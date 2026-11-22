@@ -28,6 +28,5 @@ Open [the hosted portal](https://flagproject.chrisclark.tech) from any browser. 
 | Interview materials | [Workflow evidence prompt](inputs/process.md), [follow-up prompt](inputs/interviewer.md), [analyst summary prompt](inputs/summary.md), [question bank](navigator/questions.py), [fictional scenarios](inputs/scenarios.json) and [development prompts](docs/development.md) |
 | Presenting the exercise | [PowerPoint](panel/Flagstaff-Navigator.pptx), [PDF slides](panel/Flagstaff-Navigator.pdf), [walkthrough](panel/live-demo.md), and [panel criteria review](docs/panel-coverage.md) |
 
-The City assignment is the `BSAII_Final_Exercise.docx` attachment to Shawn Armour’s “Business Systems Architect II - Round 3 Project Details” email. The attachment specifies the three deliverables, 20-minute walkthrough and 30-minute panel discussion. Shawn’s email supplies the submission deadline, Sunday, November 22, 2026 at 11:59 p.m. Arizona time. The panel interview is Monday, November 23.
 
 For the interview exercise, use invented workflow and contact details. The assessment identifies who should review a proposal and what evidence they need. The demo has no City accounts, live integrations, ticket creation, or City compliance approval.
