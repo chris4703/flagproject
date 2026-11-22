@@ -9,7 +9,7 @@ City of Flagstaff Business Systems Architect II final interview exercise. Flagst
 - [Panel handout](presentation/Flagstaff-WIP-Panel-Handout.pdf)
 - [Flagstaff slideshow for Keynote](presentation/Flagstaff-Slideshow.key)
 
-Download the HTML or Keynote files and open them locally for their intended layout.
+For the HTML handouts, download and extract the repository ZIP, then open the files in `presentation/`. Keep the linked folders beside `The-Brief.html` so its PDFs and Markdown files open. Open the slideshow in Keynote.
 
 ## Analyst dashboard
 
