@@ -1,0 +1,9 @@
+**
+!server.py
+!navigator/
+!navigator/**
+!inputs/
+!inputs/**
+!web/
+!web/**
+**/__pycache__

@@ -1,0 +1,100 @@
+{
+  "fire-drills": {
+    "title": "Weekly drill records",
+    "department": "Fire",
+    "role": "Training administrator",
+    "description": "Compare drill notes and a training tracker before Friday follow-up.",
+    "answers": {
+      "goal": ["", "Each Friday I make a follow-up list for training drills. Reading station notes and matching them to the tracker takes most of the time. A draft that clearly shows missing and conflicting entries would give our supervisor a shorter list to check."],
+      "process": ["", "On Friday I export the Mesa Pine training tracker, read each station’s drill notes, match the drill IDs, and mark missing or late entries. The training supervisor checks the draft before staff are reminded."],
+      "existing": ["partial", "The tracker can list scheduled drills. It cannot match free-form station notes or explain a missing entry."],
+      "data": ["none", "Synthetic drill codes, dates and generic team labels only."],
+      "systems": ["manual", "The Mesa Pine tracker produces a CSV. Station notes are in a shared training folder. Staff assemble the review list manually."],
+      "changes": ["read", "Read the two inputs and prepare a draft in the training workspace. Staff handle any reminders."],
+      "impact": ["operational", "An incorrect match could create duplicate follow-up or delay a reminder."],
+      "owner": ["confirmed", "Training supervisor owns the workflow. Training records steward authorizes use of the synthetic drill inputs."],
+      "boundary": ["admin", "Administrative drill recordkeeping only."],
+      "frequency": ["scheduled", "Weekly, about 35 drill entries and 70 minutes of hands-on effort. Roughly five need manual reconciliation."],
+      "rules": ["mixed", "Matching drill IDs and dates and finding missing entries follow written rules. Reading notes about rescheduled drills needs interpretation."],
+      "input": ["mixed", "A CSV of scheduled drills and short notes in inconsistent formats. Some notes are late or disagree with the tracker."],
+      "judgment": ["bounded", "The supervisor checks a suggested drill ID and date against the original note and the tracker."],
+      "exceptions": ["manageable", "Missing IDs, mismatched dates and late notes go to a manual queue. The supervisor decides what to follow up on."],
+      "example": ["", "The tracker lists drill MP-17 for Friday. A station note says MP-17 moved to Monday. Route it to review with the note attached as a reference."],
+      "output": ["both", "Suggest drill ID, date and completion status from each note. Apply matching rules to produce a draft list with matched, missing and conflicting entries."],
+      "people": ["team", "Two training administrators and one supervisor in the training section."],
+      "tools": ["none", "The tracker and shared folder exist. An approved tool for interpreting notes has yet to be identified."],
+      "review": ["prior", "The training supervisor checks each exception against its source and signs off on the list. Staff can revert to the current manual list."]
+    }
+  },
+  "police-inventory": {
+    "title": "Supply cabinet counts",
+    "department": "Police",
+    "role": "Records clerk",
+    "description": "Find an existing report for a recurring office supply check.",
+    "answers": {
+      "goal": ["", "Each Monday I check which office supplies are below the reorder point. I rebuild the list by hand, and small items are easy to miss. A list I can check against the current counts would make it easier to reorder on time."],
+      "process": ["", "Every Monday the clerk reads the Birch Desk supply counts, sorts the paper list, and gives the office coordinator the reorder list."],
+      "existing": ["yes", "The Birch Desk inventory tool already has a saved low-stock report."],
+      "barrier": ["training", "New clerks have access and need a short guide for opening and filtering the report."],
+      "data": ["none", "Routine stationery labels and counts."],
+      "systems": ["same", "Report and counts stay in Birch Desk."],
+      "changes": ["read", "Run the read-only report with existing clerk access."],
+      "impact": ["minor", "The clerk can check the count before reordering."],
+      "owner": ["confirmed", "The office coordinator owns the workflow and is authorized to use stock counts."],
+      "boundary": ["admin", "Office supply inventory only."]
+    }
+  },
+  "comms-quality": {
+    "title": "Retrospective quality queue",
+    "department": "Emergency Communications",
+    "role": "Dispatcher on administrative rotation",
+    "description": "Screen a proposed back-office QA queue with hypothetical restricted data.",
+    "answers": {
+      "goal": ["", "After each training week, I check which records still need a supervisor review. I go through the rows by hand. A list of unchecked records would help the supervisor see what’s left and avoid missed reviews."],
+      "process": ["", "After the training week ends, the coordinator receives synthetic export rows, applies a missing-review rule, and gives a draft queue to the quality supervisor."],
+      "existing": ["no", "The system has a raw export only."],
+      "data": ["both", "Hypothetical field categories include protected health details and criminal justice information. The review uses field categories only."],
+      "systems": ["manual", "A read-only export from the Juniper Console would be compared with a separate checklist."],
+      "changes": ["read", "Only draft a queue. All record handling occurs in the approved manual process."],
+      "impact": ["operational", "A missing row delays retrospective quality review."],
+      "owner": ["partial", "The quality supervisor owns the work. Data owner authorization is unresolved."],
+      "boundary": ["admin", "Retrospective administrative review after the training week."],
+      "frequency": ["scheduled", "Weekly, about 45 rows and 35 minutes."],
+      "rules": ["stable", "Flag rows without a completed review stamp."],
+      "input": ["structured", "Fixed spreadsheet columns with identifiers."],
+      "output": ["fixed", "Produce a draft list of rows with an empty review stamp."],
+      "judgment": ["none", "The checklist explicitly defines an absent stamp."],
+      "exceptions": ["manageable", "Route invalid stamps to the quality supervisor for manual checking."],
+      "people": ["team", "One administrative review team."],
+      "tools": ["unknown", "Data steward and Information Security have not validated a tool."],
+      "review": ["prior", "The quality supervisor checks all rows before accepting the queue."]
+    }
+  },
+  "fire-classroom-recap": {
+    "title": "Classroom setup recap",
+    "department": "Fire",
+    "role": "Training coordinator",
+    "description": "Turn instructor notes about classroom setup and handouts into a short draft for staff to check.",
+    "answers": {
+      "goal": ["", "After each class I read instructor notes about classroom setup, presentation equipment and handouts. I write a short recap, then give it to the next instructor. A draft would save me from rewriting the notes by hand."],
+      "process": ["", "When a class ends, instructors leave short notes in the training folder. I read the comments, combine similar points and give the checked recap to the next instructor."],
+      "existing": ["no", "Our existing template gives the recap a place to go. We checked and it cannot summarize or combine notes written in different ways."],
+      "data": ["none", "Only routine classroom logistics such as where to set up the projector and whether we had enough handouts. No names, evaluations, incident details or patient information."],
+      "systems": ["manual", "The coordinator would copy the classroom setup notes into a City-approved drafting tool by hand and bring the checked draft back to the training folder."],
+      "changes": ["read", "The tool only reads the notes and prepares a draft. Staff make any changes to the training folder and decide whether to share the recap."],
+      "impact": ["minor", "The coordinator checks the recap before use. A missed or wrong detail can be fixed against the notes before it causes a problem."],
+      "owner": ["confirmed", "The training lead owns the task and classroom notes and has approved testing the drafting idea with invented examples. IT still needs to verify which tool is allowed."],
+      "boundary": ["admin", "This is only for room setup and supplies. It does not affect emergency response, training outcomes or decisions about staff."],
+      "frequency": ["event", "After each class, usually two classes a week. It takes about 20 minutes to write and check each recap."],
+      "rules": ["judgment", "Instructors describe the same issue in different ways. The coordinator reads for meaning and decides which points belong in the recap."],
+      "input": ["unstructured", "Short free-form instructor notes. There is no standard form, fixed set of fields or spreadsheet to match."],
+      "output": ["draft", "A short draft that captures classroom setup and handout changes. The coordinator can edit or discard it before sharing. No automatic updates or messages are needed."],
+      "judgment": ["bounded", "The coordinator compares each draft point with the instructor notes. Keep the original notes handy and flag anything the notes do not support."],
+      "exceptions": ["manageable", "When comments disagree, the coordinator reads both notes and checks with the instructor. The draft can flag the disagreement for review."],
+      "example": ["", "One instructor writes ‘People at the back couldn’t see the slides.’ Another writes ‘We ran out of handouts.’ A good draft says ‘Check slide visibility from the back row’ and ‘Bring extra handouts.’ The coordinator checks both points against the notes."],
+      "people": ["team", "The training coordinator and the next instructor use the recap."],
+      "tools": ["none", "The team checked its current tools and did not find one approved to summarize these notes. Ask IT to verify an approved environment before any real rollout."],
+      "review": ["prior", "The coordinator checks every point against the original notes before staff use the recap. They remove unsupported details and can write the recap manually."]
+    }
+  }
+}

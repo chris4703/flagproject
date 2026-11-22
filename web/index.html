@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#234a3c">
+  <title>Flagstaff WIP · Work Improvement Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/staff.css">
+  <script src="/app.js" defer></script>
+</head>
+<body class="staff-page" data-stage="start">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="staff-header">
+    <div class="staff-header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <div><span class="brand-city">Flagstaff WIP</span><span class="brand-team">Work Improvement Portal</span></div>
+      </div>
+      <button id="home" class="ghost" type="button" hidden>Start over</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <ol id="progress" class="staff-progress" aria-label="Submission progress" hidden>
+      <li>Start</li><li>Questions</li><li>Review</li><li>Submit</li>
+    </ol>
+    <div id="screen"></div>
+  </main>
+  <footer class="staff-footer">
+    <div class="staff-footer-inner">
+      <span>City of Flagstaff · Public Safety</span>
+      <span class="footer-links"><a href="/analyst">Analyst dashboard</a><span id="mode"><span class="dot"></span> Interview ready</span></span>
+    </div>
+  </footer>
+  <div id="status" class="sr-only" role="status"></div>
+</body>
+</html>

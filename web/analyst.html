@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142a36">
+  <title>Analyst dashboard · Flagstaff WIP</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/analyst.css">
+  <script src="/analyst.js" defer></script>
+</head>
+<body class="analyst-page">
+  <a class="skip" href="#main">Skip to dashboard</a>
+  <header class="analyst-topbar">
+    <a href="/" class="brand analyst-brand">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span><span class="brand-city">Flagstaff WIP</span><span class="brand-team">Work Improvement Portal</span></span>
+    </a>
+    <nav aria-label="Analyst navigation">
+      <a href="/">Interview</a>
+      <button type="button" id="sign-out" hidden>Sign out</button>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <p id="page-error" class="error" role="alert" hidden></p>
+    <p id="loading" role="status">Opening analyst workspace…</p>
+
+    <section id="login" class="card analyst-login" hidden>
+      <h1>Analyst sign-in</h1>
+      <p class="muted">Sign in to review completed assessments and trends.</p>
+      <form id="login-form" method="post" action="/api/analyst/login">
+        <label class="field-label" for="username">Username</label>
+        <input id="username" name="username" type="text" maxlength="32" autocomplete="username" required>
+        <label class="field-label" for="password">Password</label>
+        <input id="password" name="password" type="password" maxlength="128" autocomplete="current-password" required>
+        <p id="login-error" class="error" role="alert" hidden></p>
+        <button type="submit" class="primary">Sign in</button>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <header class="dashboard-heading">
+        <div>
+          <h1>Analyst dashboard</h1>
+          <p class="intro">Review completed assessments, triage outcomes, and governance holds.</p>
+        </div>
+        <a id="export" class="secondary" href="/api/analyst/export.csv">Export filtered CSV</a>
+      </header>
+      <section class="card filter-card" aria-labelledby="filters-title">
+        <div class="section-heading">
+          <h2 id="filters-title">Filter submissions</h2>
+          <button class="ghost" type="button" id="reset">Reset filters</button>
+        </div>
+        <form id="find-assessment" class="assessment-lookup">
+          <div>
+            <label for="lookup-id" class="field-label">Assessment ID</label>
+            <input id="lookup-id" name="id" type="text" minlength="12" maxlength="12" pattern="[0-9A-Fa-f]{12}"
+              autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="12-character ID" required>
+          </div>
+          <button type="submit" class="secondary">Find assessment</button>
+        </form>
+        <form id="filters" class="filter-form" aria-label="Submission filters"></form>
+        <div id="active-filters" class="active-filters" role="group" aria-label="Active filters" hidden></div>
+      </section>
+      <p id="results-status" role="status" class="sr-only"></p>
+      <div id="summary"></div>
+      <div id="records"></div>
+    </section>
+  </main>
+  <dialog id="report-dialog" aria-labelledby="report-title">
+    <div class="section-heading">
+      <h2 id="report-title">Assessment</h2>
+      <form method="dialog"><button class="secondary" type="submit">Close</button></form>
+    </div>
+    <div id="report-content"></div>
+  </dialog>
+  <footer class="analyst-footer">City of Flagstaff · Information Technology</footer>
+</body>
+</html>

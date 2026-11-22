@@ -1,0 +1,23 @@
+name: flagcity-navigator
+services:
+  navigator:
+    image: flagcity-navigator:1.0
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${NAV_HOST_BIND:-127.0.0.1}:${NAV_HOST_PORT:-8878}:8080"
+    environment:
+      NAV_PUBLIC_HOST: "${NAV_PUBLIC_HOST:-}"
+      NAV_MODEL_URL: "${NAV_MODEL_URL-http://host.docker.internal:8879}"
+    volumes:
+      - navigator_state:/state
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health', timeout=2)"]
+      interval: 15s
+      timeout: 4s
+      retries: 3
+volumes:
+  navigator_state:

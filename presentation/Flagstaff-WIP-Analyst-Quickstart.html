@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagstaff WIP | Analyst dashboard quickstart</title>
+<style>
+:root {
+  color-scheme: light;
+  --forest: #163e39;
+  --forest-deep: #12312e;
+  --ink: #203632;
+  --muted: #45605a;
+  --paper: #fffefb;
+  --line: #d1dfd7;
+  --mint: #d1e9dd;
+  --amber: #f1bd65;
+  --warm: #fff2d6;
+  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.46;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9f0eb; color: var(--ink); }
+h1, h2, h3, p, figure, ol, dl, dd { margin: 0; }
+a { color: #154d43; font-weight: 700; text-underline-offset: .15em; overflow-wrap: anywhere; }
+a:focus-visible { outline: 3px solid #1e715d; outline-offset: 4px; }
+main { padding: 32px 16px 40px; }
+.sheet {
+  display: flex; flex-direction: column; gap: 26px;
+  max-width: 880px; margin: 0 auto 24px; padding: 37px 43px 30px;
+  background: var(--paper); border-radius: 18px; border: 1px solid var(--line);
+  box-shadow: 0 8px 34px #18392d10;
+}
+.letterhead {
+  background: var(--forest); color: white; min-height: 92px;
+  border-radius: 13px 13px 4px 4px; border-bottom: 4px solid var(--amber);
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 17px 23px;
+}
+.brand { z-index: 1; position: relative; }
+.brand-name { display: block; font-size: 22px; line-height: 1.14; font-weight: 800; letter-spacing: .075em; }
+.brand-name b { color: #ffcd82; }
+.brand-location { display: block; margin-top: 7px; color: #daf0e6; font-size: 11.5px; font-weight: 800; letter-spacing: .16em; }
+.landscape { position: absolute; right: 0; bottom: 0; width: 235px; height: 88px; overflow: hidden; }
+.landscape i { position: absolute; display: block; }
+.sun { inset: 13px 54px auto auto; width: 31px; height: 31px; border-radius: 50%; background: #f6c677; }
+.ridge-far {
+  inset: auto 0 0 1px; height: 80px; background: #75a997;
+  clip-path: polygon(0 100%, 29% 56%, 40% 68%, 65% 5%, 82% 62%, 91% 47%, 100% 62%, 100% 100%);
+}
+.ridge-near {
+  inset: auto 0 0 1px; height: 63px; background: #316f60;
+  clip-path: polygon(0 100%, 19% 78%, 39% 32%, 56% 68%, 67% 88%, 83% 49%, 100% 75%, 100% 100%);
+}
+.eyebrow { color: #32675a; text-transform: uppercase; font-size: 12px; font-weight: 800; letter-spacing: .13em; }
+h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; line-height: 1.04; letter-spacing: -.035em; color: var(--forest-deep); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 211px; gap: 28px; align-items: start; }
+.welcome-title { margin: 10px 0 9px; font-size: clamp(39px, 6vw, 56px); }
+.expanded-name { font-size: 18px; font-weight: 800; color: #34675b; }
+.lead { margin-top: 14px; font-size: 18px; line-height: 1.46; }
+.example { margin-top: 15px; padding-left: 12px; border-left: 3px solid #75a997; color: var(--muted); }
+.qr {
+  padding: 14px 12px 15px; border-radius: 14px; background: #e6f1e9;
+  border: 1px solid #c8dfd2; text-align: center;
+}
+.qr h2 { font-size: 18px; color: var(--forest-deep); }
+.qr a { display: block; font-size: 12.6px; }
+.qr a img { display: block; width: 164px; height: 164px; margin: 7px auto 5px; border-radius: 3px; }
+.qr a:focus-visible { border-radius: 3px; }
+.notice {
+  padding: 12px 15px; border-radius: 8px; border-left: 4px solid #be7e1c;
+  color: #4b330e; background: var(--warm);
+}
+.notice strong { color: #3e290c; }
+.faq h2 { font-size: 25px; color: var(--forest-deep); letter-spacing: -.02em; }
+.faq dl { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; margin-top: 12px; }
+.faq-pair { border-top: 1px solid var(--line); padding-top: 9px; }
+.faq dt { font-weight: 800; margin-bottom: 3px; color: var(--forest-deep); }
+.faq dd { color: var(--muted); }
+.kb-title { font-size: clamp(39px, 6vw, 53px); margin: 7px 0 9px; }
+.kb-intro p:last-child { color: var(--muted); font-size: 18px; }
+.kb-content { display: grid; gap: 13px; }
+.access-note { border-radius: 9px; background: #e5f0eb; border-left: 4px solid #508977; padding: 12px 15px; }
+.access-note strong { color: #163e39; }
+.steps { padding: 0; list-style: none; display: grid; gap: 11px; counter-reset: guide; }
+.steps > li {
+  counter-increment: guide; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 11px;
+  border: 1px solid var(--line); border-radius: 10px; padding: 12px 15px;
+  background: white;
+}
+.steps > li::before {
+  content: counter(guide); display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 9px; font-size: 17px;
+  font-weight: 800; background: var(--chip, #deede5); color: var(--chip-ink, #184737);
+}
+.steps > li:nth-child(2) { --chip: #dcecf8; --chip-ink: #224d6d; }
+.steps > li:nth-child(3) { --chip: #f8ebcf; --chip-ink: #5b4218; }
+.steps > li:nth-child(4) { --chip: #eae4f3; --chip-ink: #493674; }
+.steps h2 { color: var(--forest-deep); font-size: 18px; line-height: 1.22; margin-bottom: 3px; }
+.steps p, .access-note, .notice { font-size: 15px; }
+.steps a { white-space: normal; }
+.steps .detail { margin-top: 4px; color: var(--muted); }
+.footer {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px 18px;
+  margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12px;
+}
+.footer strong { color: var(--forest-deep); }
+@media screen and (max-width: 620px) {
+  main { padding: 12px 9px 16px; }
+  .sheet { padding: 18px 16px; gap: 20px; }
+  .letterhead { padding: 14px; min-height: 78px; }
+  .landscape { width: 140px; opacity: .7; }
+  .brand-name { font-size: 18px; }
+  .hero, .faq dl { grid-template-columns: 1fr; gap: 15px; }
+  .qr { max-width: 240px; }
+  .footer { flex-wrap: wrap; }
+}
+@page { size: Letter; margin: 0; }
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body, main { background: white; padding: 0; margin: 0; }
+  .sheet {
+    width: 8.5in; min-height: 11in; max-width: none; box-shadow: none; border: 0;
+    border-radius: 0; padding: .49in .56in .40in; margin: 0;
+    gap: 22px; break-after: page;
+  }
+  .sheet:last-child { break-after: auto; }
+  .faq-pair, .steps > li, .letterhead { break-inside: avoid; }
+  .kb .letterhead { min-height: 83px; }
+  .kb-content { gap: 11px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<article class="sheet kb" aria-labelledby="quickstart">
+
+<header class="letterhead">
+  <div class="brand">
+    <span class="brand-name">FLAGSTAFF <b>WIP</b></span>
+    <span class="brand-location">FLAGSTAFF, ARIZONA</span>
+  </div>
+  <div class="landscape" aria-hidden="true"><i class="sun"></i><i class="ridge-far"></i><i class="ridge-near"></i></div>
+</header>
+  <header class="kb-intro">
+    <p class="eyebrow">IT knowledge base</p>
+    <h1 class="kb-title" id="quickstart">Analyst dashboard quickstart</h1>
+    <p>Find a completed assessment, check the evidence, and decide who should follow up.</p>
+  </header>
+  <div class="kb-content">
+    <aside class="access-note" aria-label="Account access"><strong>Before you begin</strong> · Use the analyst credentials provided for the hosted demo. Ask the presenter if you need access.</aside>
+    <ol class="steps" role="list">
+      <li>
+        <div>
+          <h2>Open the portal and sign in</h2>
+          <p>From the <a href="https://flagproject.chrisclark.tech">Flagstaff WIP homepage</a>, choose <strong>Analyst dashboard</strong> near the bottom, or <a href="https://flagproject.chrisclark.tech/analyst">open the analyst sign-in page</a> directly. Enter your username and password.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Find an assessment</h2>
+          <p>Enter the assessment ID from a staff receipt and choose <strong>Find assessment</strong>. For a wider review, filter by department, impact if wrong, or IT review status, then open an item under <strong>Completed submissions</strong>.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Use the charts to prioritize</h2>
+          <p>Compare expected benefit with estimated delivery effort. Hover over a count for details, or select it to filter the list. For the Fire badge example, select <strong>High</strong> in the <strong>Automation</strong> row of <strong>Solution by impact if wrong</strong>.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Check the evidence and record the next step</h2>
+          <p>Start with <strong>Request at a glance</strong>, then check the staff answers. After triage, save the <strong>IT review</strong> status. Use <strong>Draft follow-up email</strong> if you need more detail and a contact is on file.</p>
+        </div>
+      </li>
+    </ol>
+    <aside class="notice" aria-label="Governance hold guidance"><strong>If there’s a governance hold</strong> · Read <strong>First action</strong> and expand <strong>Governance checks from the assessment</strong>. Confirm the required approvals before any pilot with real data.</aside>
+  </div>
+
+<footer class="footer">
+  <strong>Flagstaff WIP · Analyst quickstart</strong>
+  <span>Business Systems Architect II interview demo</span>
+</footer>
+</article>
+
+</main>
+</body>
+</html>
