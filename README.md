@@ -4,8 +4,6 @@ City of Flagstaff Business Systems Architect II final interview exercise. Flagst
 
 ## Panel materials
 
-**[Appendix C — Prompts and development notes](docs/appendix-c.md)** links directly to the Markdown files used by the app and the notes from building and testing it.
-
 - [The Brief](presentation/The-Brief.html)
 - [Analyst quickstart](presentation/Flagstaff-WIP-Analyst-Quickstart.html)
 - [Panel handout](presentation/Flagstaff-WIP-Panel-Handout.pdf)
